@@ -14,10 +14,11 @@ int main(void)
     {
         printf("i = inserer donnee\n");
         printf("e = enlever donnee\n");
-        printf("a = afficher liste\n");
-        printf("f = Fin du programme\n");
+        printf("a = afficher pile\n");
         printf("t = Obtenir la taille\n");
-        printf("Quelle operation, souhaitez vous effectuer sur la liste?\n");
+        printf("v = vider la pile\n");
+        printf("f = Fin du programme\n");
+        printf("Quelle operation, souhaitez vous effectuer sur la pile?: ");
         scanf("%c", &choice);
 
         switch (choice)
@@ -43,6 +44,11 @@ int main(void)
         case 't':
         case 'T':
             printf("Taille actuelle de la pile: %ld\n", getSize(&myStack));
+            break;
+        
+        case 'v':
+        case 'V':
+            clear(&myStack);
             break;
         
         case 'f':

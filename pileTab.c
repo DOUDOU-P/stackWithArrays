@@ -8,16 +8,17 @@ void initialize(stack* myStack)
     myStack->fait = -1;
 }
 
-void push(stack* myStack, const int data)
+int push(stack* myStack, const int data)
 {
     assert(myStack != NULL);
-    if(myStack->fait + 1 < SIZE_MAX)
+    if(myStack->fait + 1 < STACK_CAPACITY)
     {
         myStack->tab[++myStack->fait] = data;
-        return;
+        return 1;
     }
 
-    printf("Structure de donnees pleine\n");
+    return 0;
+        
 }
 
 int pop(stack* myStack)
@@ -26,16 +27,15 @@ int pop(stack* myStack)
 
     if(myStack->fait > -1)
     {
-        int pValue = myStack->tab[myStack->fait--];
-        return pValue;
+        myStack->fait--;
+        return 1;
     }
 
-    printf("Structure de donnees vide\n");
-    return EOF;
+    return 0;
     
 }
 
-void displayStack(stack* myStack)
+void displayStack(const stack* myStack)
 {
     assert(myStack != NULL);
     for(int i = myStack->fait; i >= 0; i--)
@@ -46,7 +46,7 @@ void displayStack(stack* myStack)
     printf("NULL\n");
 }
 
-size_t getSize(stack* myStack)
+size_t getSize(const stack* myStack)
 {
     assert(myStack != NULL);
     return (myStack->fait + 1);
@@ -54,10 +54,10 @@ size_t getSize(stack* myStack)
 
 void clear(stack* myStack)
 {
-    myStack->fait = -1;
+    initialize(myStack);
 }
 
 void clearBuffer()
 {
-    while(getchar() != '\n');
+    while(getchar() != '\n' && getchar() != EOF);
 }
