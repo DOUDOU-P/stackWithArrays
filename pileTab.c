@@ -59,5 +59,6 @@ void clear(stack* myStack)
 
 void clearBuffer()
 {
-    while(getchar() != '\n' && getchar() != EOF);
+    int c;
+    while((c = getchar()) != '\n' && c != EOF);
 }
